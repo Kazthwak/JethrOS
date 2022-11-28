@@ -1,0 +1,7 @@
+#make .asm
+#compile with nasm *.asm
+#run with qemu-system-x86_64 *
+#make .o gcc -ffreestanding -c basic.c -o basic.o
+#view it objdump -d basic.o
+#link to .bin
+#view machine code: ndisasm -b 32 basic.bin > basic.dis
