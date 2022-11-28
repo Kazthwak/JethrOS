@@ -23,7 +23,7 @@ except:
 whole.write(headers.read())
 whole.write(meat.read())
 whole.write(drivers.read())
-#whole.write(interupts.read())
+whole.write(interupts.read())
 whole.write(utils.read())
 whole.close()
 meat.close()

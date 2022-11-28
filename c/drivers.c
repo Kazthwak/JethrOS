@@ -2,42 +2,6 @@
 void scroll(){
 }
 
-void charpr(int x, int y, int character, char colour){
-
-char fontchar[8];
-switch(character){
-case 0x41:
-char fontchar[8] = {0x0C, 0x1E, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x00};
-goto fontset;
-}
-fontset:
-/*
-for(*ip = 0; *ip < 8; *ip++){
-for(*jp = 0; *jp < 8; *jp++){
-if((fontchar[*ip] >> *jp) & 1){
-setpixel(x+*jp,y+*ip,0xf);
-}else{
-setpixel(x+*jp,y+*ip,0x5);
-}
-}
-}*/
-int i;
-int j;
-while(1){
-if(i >= 8){break;}
-while(1){
-if(j >= 8){break;}
-if((fontchar[i] >> j) & 1){
-setpixel(x+j,y+i,0xf);
-}else{
-setpixel(x+j,y+i,0x5);
-}
-j++;
-}
-i++;
-}
-}
-
 void setpixel(int x, int y, char colour){
 int poff = (320*y)+x;
 if(poff > 64000){

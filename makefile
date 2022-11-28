@@ -1,4 +1,5 @@
-all: nasm C_file os_image run
+all: nasm C_file os_image run git
+
 nasm:
 	@nasm boot_sect.asm
 	@mv boot_sect boot_sect.bin
