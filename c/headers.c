@@ -15,6 +15,7 @@
 
 // #define crash
 
+int getcode(int charin, int mode);
 void crash();
 void setpixel(int x, int y, char colour);
 void charpr(int x, int y, int character, char colour);
