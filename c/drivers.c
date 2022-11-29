@@ -4,9 +4,9 @@ void scroll(){
 
 //sets the pixel at x, y to colour
 void setpixel(int x, int y, char colour){
-int poff = (320*y)+x;
-if(poff > 64000){
-poff -= 64000;
+int poff = (320*y)+x+2;
+if(poff > 32768){
+// poff -= 32766;
 char* grp = (char*)0xb0000;
 grp += poff;
 *grp = (char)colour;
@@ -19,23 +19,14 @@ grp += poff;
 
 //prints a char to the current offset with the colour specified 
 void print_char(int char_to_print, int colour){
-int going = 1;
-while(going == 1){
 // if the colour is 0, sets it to the default value of white on black
-if(colour == 0){
-colour = WHITE_ON_BLACK;
+if(colour == -1){
+colour = 0x0f;
 }
-//sets the location to print to
-char* loc = (char*)VIDEO_ADDRESS;
-//offset the location to be the correct row and column using the function
-loc += offset();
-//writes the ascii code to the location
-*loc = char_to_print;
-//prints the colour code to the next byte
-loc += 1;
-*loc = colour;
-break;
-}
+//rewriting to use other function
+int roow = getrow();
+int cool = getcol();
+charpr(cool*8, roow*8, char_to_print, colour);
 }
 
 //prints the four chars stored in the long in to row, column
@@ -58,8 +49,6 @@ print_char(*chars,0);
 
 //sets the teleprinting location
 void setoffset(int row, int column){
-int offsett = offset();
-offsett /= 2;
 int* rowloc = (int*)0x7c05;
 int* colloc = (int*)0x7c10;
 *rowloc = row;

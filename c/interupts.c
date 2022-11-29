@@ -8,7 +8,7 @@ for(int i = 0; i < 4; i++){
 for(int j =0; j < 8; j++){
 // tmp = (a >> b)&1
 if((char2pr >> ((i*8+j)))&0x1 == 1){
-setpixel(x+j,y+(7-i), 0x0f);
+setpixel(x+j,y+(7-i), colour);
 }else{
 setpixel(x+j,y+(7-i), 0x0);
 }
@@ -20,7 +20,7 @@ for(int i = 0; i < 4; i++){
 for(int j =0; j < 8; j++){
 // tmp = (a >> b)&1
 if((char2pr >> ((i*8+j)))&0x1 == 1){
-setpixel(x+j,y+3-i, 0x0f);
+setpixel(x+j,y+3-i, colour);
 }else{
 setpixel(x+j,y+3-i, 0x0);
 }

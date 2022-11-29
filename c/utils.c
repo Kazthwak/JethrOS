@@ -42,6 +42,7 @@ i++;
 //the funtion that initializes amain, if amain returns it prints an error message
 void init(){
 clear();
+setoffset(0,-1);
 amain();
 clear();
 teleprint2(0,0x4552524f, 0x52000000);

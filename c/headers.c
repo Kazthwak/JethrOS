@@ -2,7 +2,7 @@
 #define VIDEO_ADDRESS 0xb8000
 //these are for text
 #define MAX_ROWS 25
-#define MAX_COLS 80
+#define MAX_COLS 40
 // Attribute byte for our default colour scheme .
 #define WHITE_ON_BLACK 0x0f
 // Screen device I / O ports
