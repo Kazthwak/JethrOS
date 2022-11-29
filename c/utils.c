@@ -1,17 +1,28 @@
+//hangs forever
 void hang(){
 while(1==1);
 }
-
+//crashes (at least until i set up an interupt to catch divide by 0 errors)
 void crash(){int i = 1/0;}
 
+//gets num%divider
 int remainder(int num, int divider){
 //num = num/divider
 // ive simplified the equation to prevent the use of floats
 //  prieviously, it crashed the emulator when it got the the line with a float
-int floor = num/divider;
-return(num-(divider*floor));
+int tmp = num;
+int i = 0;
+while(1==1){
+// i++;
+// if(1==0&&i > 10*divider){crash();return(divider/4);}
+if(tmp < divider){
+return(tmp);
+}
+tmp = tmp - divider;
+}
 }
 
+//gets num/divider ignoring remainders
 int floordiv(int num, int divider){
 //num = num/divider
 // ive simplified the equation to prevent the use of floats
@@ -28,6 +39,7 @@ i++;
 }
 }
 
+//the funtion that initializes amain, if amain returns it prints an error message
 void init(){
 clear();
 amain();
@@ -38,6 +50,7 @@ hang();
 #endif
 }
 
+//clears the screen
 void clear(){
 for(int i = 0; i < (64000); i++){
 char* grp = (char*)(0xa0000-0xf7c)+i;
@@ -48,41 +61,51 @@ char* grp = (char*)(0xb0000-0xf7c)+i;
 }
 }
 
+//prints the long to the current row and column
+//row and column inputs are not used but it breaks if I don't 
 void teleprint(int row, int column, int colour, long in){
 inccol();
 print_string(getrow(),getcol(),colour,in);
 }
 
+//prints a single character to the current offset
 void telechar(int colour, int char_to_print){
 inccol();
 print_char(char_to_print,colour);
 }
 
+//a wrapper function, prints out the 2 longs one after each other
 void teleprint2(int colour, long a, long b){
 teleprint(0,0,colour,a);
 teleprint(0,0,colour,b);
 }
 
+//a wrapper function, prints out the 3 longs one after each other
 void teleprint3(int colour, long a, long b, long c){
 teleprint1(colour,a);
 teleprint1(colour,b);
 teleprint1(colour,c);
 }
 
+//a wrapper function, prints out the 1 long withour having to give row and column
 void teleprint1(int colour, long a){
 teleprint(0,0,colour,a);
 }
 
+//does newline
 void newline(){
 setoffset(getrow()+1,-2);
 }
 
+// checks if the column is less than -a, setting it to -1 if it is
 void corcol(){
-if(getcol() < 0){
-setoffset(getrow(),0);
+if(getcol() < -1){
+setoffset(getrow(),-1);
 }
 }
 
+//prints an integer up to 999
+//if the number is bigger, it does strange things
 void printint(int num){
 if(num > 99){
 int tmp;
@@ -111,11 +134,12 @@ return(b);
 }
 }
 
-
+//waits for time
 void wait(int time){
 for(int i = 0; i < time*2000000; i++){}
 }
 
+//gets a random number, can be quite slow
 int rand(int min, int max){
 int* seed = (int*)0x7c0a;
 *seed = *seed * 949;
@@ -133,7 +157,7 @@ return(min+remainder(tmp,tmpmax));
 }
 
 
-// calculates the video memory offset from the row and column
+// calculates the video memory offset from the row and column  now obsolete
 int offset(){
 int row = getrow();
 int column = getcol();

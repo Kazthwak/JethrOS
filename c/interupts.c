@@ -1,7 +1,7 @@
 // #define ca 0x0C1E33333F333300
 #define ah 0x3F333300
 #define al 0x0C1E3333
-
+//prints a character in an 8x8 font to x,y
 void charpr(int x, int y, int character, char colour){
 
 int char2pr = getcode(character,1);
@@ -30,6 +30,7 @@ setpixel(x+j,y+i+4, 0x0);
 
 }
 
+//returns the font data
 int getcode(int charin, int mode){
 //return lower half
 if(mode == 1){

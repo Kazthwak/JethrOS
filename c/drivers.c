@@ -2,6 +2,7 @@
 void scroll(){
 }
 
+//sets the pixel at x, y to colour
 void setpixel(int x, int y, char colour){
 int poff = (320*y)+x;
 if(poff > 64000){
@@ -16,7 +17,7 @@ grp += poff;
 }
 }
 
-//prints a char to row and column with the colour specified 
+//prints a char to the current offset with the colour specified 
 void print_char(int char_to_print, int colour){
 int going = 1;
 while(going == 1){
@@ -37,6 +38,7 @@ break;
 }
 }
 
+//prints the four chars stored in the long in to row, column
 void print_string(int row, int column, int colour, long in){
 setoffset(row,column);
 long* ad = (long*)0x7c01;
@@ -54,6 +56,7 @@ print_char(*chars,0);
 }
 }
 
+//sets the teleprinting location
 void setoffset(int row, int column){
 int offsett = offset();
 offsett /= 2;
@@ -63,6 +66,7 @@ int* colloc = (int*)0x7c10;
 *colloc = column;
 }
 
+//increments the row so it goes to the next character
 void inccol(){
 setoffset(getrow(),getcol()+1);
 if(getcol() >= MAX_COLS){
@@ -71,11 +75,13 @@ setoffset(getrow()+1,-1);
 corcol();
 }
 
+//gets the current row
 int getrow(){
 int* rowloc = (int*)0x7c05;
 return(*rowloc);
 }
 
+//gets the current column
 int getcol(){
 int* colloc = (int*)0x7c10;
 return(*colloc);
@@ -83,18 +89,23 @@ return(*colloc);
 
 // KEYBOARD
 
+//gets the first key in the buffer
 int getkey(){
 
 }
 
+//checks if there is a key in the buffer
 int checkkey(){
 
 }
 
+//adds a key to the buffer
 void addkey(){
 
 }
 
+//TIMEKEY AND WAITFORKEY are rubbish and do not use interupt keyboard drivers
+//tries for time to get a key, returns 0 if none are given
 int timekey(int time){
 int tmp = bytein(0x60);
 for(int i = 0; i < 1000000*time && bytein(0x60) == tmp; i++){}
@@ -102,6 +113,7 @@ if(tmp == bytein(0x60)){return(0);}
 else{return(scancode(bytein(0x60)));}
 }
 
+//waits for key
 int waitforkey(){
 int tmp = bytein(0x60);
 while(bytein(0x60) == tmp){}
@@ -111,6 +123,7 @@ return(scancode(bytein(0x60)));
 
 #define notdone
 
+//returns the char code of the scancode given
 int scancode(int scancodein){
 #ifdef notdone
 return(0x41);
@@ -121,6 +134,7 @@ return(1);
 }
 }
 
+//takes a byte from port
 int bytein(int port){
 unsigned char result;
 __asm__("push %ax\n\t"
@@ -131,18 +145,21 @@ __asm__("pop %dx\n\t"
 return((unsigned short)result);
 }
 
+//gives a byte to port
 void byteout(int port, unsigned char data){
 // " a " ( data ) means : load EAX with data
 // " d " ( port ) means : load EDX with port
 __asm__("out %% al, %% dx" : : "a" (data), "d" ((unsigned short)port));
 }
 
+// takes a word from port
 int wordin(int port){
 unsigned short result;
 __asm__("in %% dx , %% ax" : "=a" (result) : "d" ((unsigned short)port));
 return result;
 }
 
+//gives a word to port
 void wordout(int port, unsigned short data){
 __asm__("out %% ax , %% dx" : : "a" (data), "d" ((unsigned short)port));
 }

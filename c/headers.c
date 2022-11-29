@@ -1,4 +1,6 @@
+//defing some video stuff
 #define VIDEO_ADDRESS 0xb8000
+//these are for text
 #define MAX_ROWS 25
 #define MAX_COLS 80
 // Attribute byte for our default colour scheme .
@@ -6,8 +8,10 @@
 // Screen device I / O ports
 #define REG_SCREEN_CTRL 0x3D4
 #define REG_SCREEN_DATA 0x3D5
+//for ifdefs for debug checking
 #define debug
 
+//including font data
 #include <b8x8font.h>
 
 #define IDTBASE 0x00000000
@@ -15,6 +19,7 @@
 
 // #define crash
 
+//defing the function
 int getcode(int charin, int mode);
 void crash();
 void setpixel(int x, int y, char colour);

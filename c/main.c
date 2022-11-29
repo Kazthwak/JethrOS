@@ -1,7 +1,9 @@
+//main is what is called, but all it does is call init() which calls amain
 void main(){
 init();
 }
 
+//amain stands for actual main, and is where the kernel should be put
 void amain(){
 charpr(10,10,0x41,'A');
 hang();
