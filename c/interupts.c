@@ -8,7 +8,7 @@ int char2pr = getcode(character,1);
 for(int i = 0; i < 4; i++){
 for(int j =0; j < 8; j++){
 // tmp = (a >> b)&1
-if((char2pr >> (i*8+j))&0x1 == 1){
+if((char2pr >> (31 - (i*8+j)))&0x1 == 1){
 setpixel(x+j,y+i, 0x0f);
 }else{
 setpixel(x+j,y+i, 0x0);
@@ -20,7 +20,7 @@ char2pr = getcode(character, 0);
 for(int i = 0; i < 4; i++){
 for(int j =0; j < 8; j++){
 // tmp = (a >> b)&1
-if((char2pr >> (i*8+j))&0x1 == 1){
+if((char2pr >> (31 - (i*8+j)))&0x1 == 1){
 setpixel(x+j,y+i+4, 0x0f);
 }else{
 setpixel(x+j,y+i+4, 0x0);
