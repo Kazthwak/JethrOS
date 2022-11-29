@@ -14,6 +14,86 @@
 //including font data
 #include <b8x8font.h>
 
+//defining the font
+#define ah 0x3F333300
+#define al 0x0C1E3333
+
+#define bh 0x66663F00
+#define bl 0x3F66663E
+
+#define ch 0x03663C00
+#define cl 0x3C660303
+
+#define dh 0x66361F00
+#define dl 0x1F366666
+
+#define eh 0x16467F00
+#define el 0x7F46161E
+
+#define fh 0x73667C00
+#define fl 0x3C660303
+
+#define gh 0x73667C00
+#define gl 0x3C660303
+
+#define hh 0x33333300
+#define hl 0x3333333F
+
+#define ih 0x0C0C1E00
+#define il 0x1E0C0C0C
+
+#define jh 0x33331E00
+#define jl 0x78303030
+
+#define kh 0x36666700
+#define kl 0x6766361E
+
+#define lh 0x46667F00
+#define ll 0x0F060606
+
+#define mh 0x6B636300
+#define ml 0x63777F7F
+
+#define nh 0x73636300
+#define nl 0x63676F7B
+
+#define oh 0x63361C00
+#define ol 0x1C366363
+
+#define ph 0x06060F00
+#define pl 0x3F66663E
+
+#define qh 0x3B1E3800
+#define ql 0x1E333333
+
+#define rh 0x36666700
+#define rl 0x3F66663E
+
+#define sh 0x38331E00
+#define sl 0x1E33070E
+
+#define th 0x0C0C1E00
+#define tl 0x3F2D0C0C
+
+#define uh 0x33333F00
+#define ul 0x33333333
+
+#define vh 0x331E0C00
+#define vl 0x33333333
+
+#define wh 0x7F776300
+#define wl 0x6363636B
+
+#define xh 0x1C366300
+#define xl 0x6363361C
+
+#define yh 0x0C0C1E00
+#define yl 0x3333331E
+
+#define zh 0x4C667F00
+#define zl 0x7F633118
+
+
 #define IDTBASE 0x00000000
 #define IDTSIZE 0xFF
 

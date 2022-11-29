@@ -5,7 +5,7 @@ init();
 
 //amain stands for actual main, and is where the kernel should be put
 void amain(){
-charpr(10,10,0x41,'A');
+charpr(10,10,0x5a,'A');
 hang();
 }
 

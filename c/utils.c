@@ -3,7 +3,7 @@ void hang(){
 while(1==1);
 }
 //crashes (at least until i set up an interupt to catch divide by 0 errors)
-void crash(){int i = 1/0;}
+void crash(){int k = 0; int i = 1/k;}
 
 //gets num%divider
 int remainder(int num, int divider){
