@@ -16,7 +16,11 @@ try:
 except:
     pass
 try:
-    interupts = open("c/interupts.c", "r")
+    interupts = open("c/text.c", "r")
+except:
+    pass
+try:
+    picstuff = open("c/pic.c", "r")
 except:
     pass
 
@@ -25,9 +29,11 @@ whole.write(meat.read())
 whole.write(drivers.read())
 whole.write(interupts.read())
 whole.write(utils.read())
+whole.write(picstuff.read())
 whole.close()
 meat.close()
 headers.close()
 drivers.close()
-#interupts.close()
+interupts.close()
 utils.close()
+picstuff.close()

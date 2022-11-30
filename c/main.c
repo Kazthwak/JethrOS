@@ -5,7 +5,6 @@ init();
 
 //amain stands for actual main, and is where the kernel should be put
 void amain(){
-hang();
 // hang();
 // teleprint3(-1, 0x54484953, 0x49533132, 0x43484152);
 // hang();
