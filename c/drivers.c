@@ -39,10 +39,10 @@ int length = 4;
 //MAKE FUNCTION WORK AND: (SINCE THIS IS HOW THEY FORMAT)
 //PULL THEM IN REVERSE ORDER
 int tmpcolumn = column;
-int* chars = (int*)0x7c00;
+char* chars = (char*)0x7c00;
 for(int i = 0; i < length; i++){
 setoffset(row,column+i);
-chars = (int*)0x7c00+length-i;
+chars = (char*)0x7c00+length-i;
 print_char(*chars,0);
 }
 }

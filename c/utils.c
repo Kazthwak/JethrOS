@@ -2,6 +2,7 @@
 void hang(){
 while(1==1);
 }
+
 //crashes (at least until i set up an interupt to catch divide by 0 errors)
 void crash(){int k = 0; int i = 1/k;}
 
@@ -65,8 +66,16 @@ char* grp = (char*)(0xb0000-0xf7c)+i;
 //prints the long to the current row and column
 //row and column inputs are not used but it breaks if I don't 
 void teleprint(int row, int column, int colour, long in){
-inccol();
-print_string(getrow(),getcol(),colour,in);
+char tmp;
+int j;
+tmp = (in >> 24)&0xff;
+telechar(colour,tmp);
+tmp = (in >> 16)&0xff;
+telechar(colour,tmp);
+tmp = (in >> 8)&0xff;
+telechar(colour,tmp);
+tmp = (in >> 0)&0xff;
+telechar(colour,tmp);
 }
 
 //prints a single character to the current offset
@@ -75,6 +84,7 @@ inccol();
 print_char(char_to_print,colour);
 }
 
+//DONOTUSE THE FUNCTIONS
 //a wrapper function, prints out the 2 longs one after each other
 void teleprint2(int colour, long a, long b){
 teleprint(0,0,colour,a);
@@ -89,10 +99,11 @@ teleprint1(colour,c);
 }
 
 //a wrapper function, prints out the 1 long withour having to give row and column
-void teleprint1(int colour, long a){
+void teleprint1(long a, int colour){
 teleprint(0,0,colour,a);
 }
 
+//YOU CAN USE ANY OF THESE
 //does newline
 void newline(){
 setoffset(getrow()+1,-2);

@@ -167,7 +167,7 @@ void byteout(int port, unsigned char data);
 void wordout(int port, unsigned short data);
 void corcol();
 void newline();
-void teleprint1(int colour, long a);
+void teleprint1(long a, int colour);
 void teleprint2(int colour, long a, long b);
 void teleprint3(int colour, long a, long b, long c);
 void clear();
