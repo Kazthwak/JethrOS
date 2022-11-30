@@ -66,8 +66,17 @@ if(charin == 0x57){return(wh);}
 if(charin == 0x58){return(xh);}
 if(charin == 0x59){return(yh);}
 if(charin == 0x5a){return(zh);}
-
-
+if(charin == 0x30){return(h0);}
+if(charin == 0x31){return(h1);}
+if(charin == 0x32){return(h2);}
+if(charin == 0x33){return(h3);}
+if(charin == 0x34){return(h4);}
+if(charin == 0x35){return(h5);}
+if(charin == 0x36){return(h6);}
+if(charin == 0x37){return(h7);}
+if(charin == 0x38){return(h8);}
+if(charin == 0x39){return(h9);}
+if(charin == 0x2d){return(hhy);}
 //return upper half
 //ah
 }else{
@@ -98,6 +107,17 @@ if(charin == 0x57){return(wl);}
 if(charin == 0x58){return(xl);}
 if(charin == 0x59){return(yl);}
 if(charin == 0x5a){return(zl);}
+if(charin == 0x30){return(l0);}
+if(charin == 0x31){return(l1);}
+if(charin == 0x32){return(l2);}
+if(charin == 0x33){return(l3);}
+if(charin == 0x34){return(l4);}
+if(charin == 0x35){return(l5);}
+if(charin == 0x36){return(l6);}
+if(charin == 0x37){return(l7);}
+if(charin == 0x38){return(l8);}
+if(charin == 0x39){return(l9);}
+if(charin == 0x2d){return(lhy);}
 }
 return(0);
 }

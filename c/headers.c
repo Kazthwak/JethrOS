@@ -30,8 +30,8 @@
 #define eh 0x16467F00
 #define el 0x7F46161E
 
-#define fh 0x73667C00
-#define fl 0x3C660303
+#define fh 0x16060F00
+#define fl 0x7F46161E
 
 #define gh 0x73667C00
 #define gl 0x3C660303
@@ -96,26 +96,26 @@
 #define gth 0x180C0600
 #define gtl 0x060C1830
 
-#define h1 0
-#define l1 0
+#define h1 0x0C0C3F00
+#define l1 0x0C0E0C0C
 
-#define h2 0
-#define l2 0
+#define h2 0x06333F00
+#define l2 0x1E33301C
 
-#define h3 0
-#define l3 0
+#define h3 0x30331E00
+#define l3 0x1E33301C
 
-#define h4 0
-#define l4 0
+#define h4 0x7F307800
+#define l4 0x383C3633
 
-#define h5 0
-#define l5 0
+#define h5 0x30331E00
+#define l5 0x3F031F30
 
-#define h6 0
-#define l6 0
+#define h6 0x33331E00
+#define l6 0x1C06031F
 
-#define h7 0
-#define l7 0
+#define h7 0x0C0C0C00
+#define l7 0x3F333018
 
 #define h8 0x33331E00
 #define l8 0x1E33331E
@@ -125,6 +125,10 @@
 
 #define h0 0x6F673E00
 #define l0 0x3E63737B
+
+#define hhy 0x00000000
+#define lhy 0x0000003F
+
 
 #define IDTBASE 0x00000000
 #define IDTSIZE 0xFF
