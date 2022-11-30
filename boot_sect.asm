@@ -8,11 +8,7 @@ KERNEL_OFFSET equ 0x1000
 
 	mov bx, MSG_REAL_MODE
 	call print_string
-pusha
-mov ah, 0x00
-mov al, 0x13
-int 0x10
-popa
+
 
 	call load_kernel
 
@@ -32,9 +28,15 @@ load_kernel:
 	mov bx, MSG_LOAD_KERNEL
 	call print_string
     mov bx, KERNEL_OFFSET
-	mov dh, 15
+	mov dh, 0x36
 	mov dl, [BOOT_DRIVE]
 	call disk_load
+
+pusha
+mov ah, 0x00
+mov al, 0x13
+int 0x10
+popa
 
 	ret
 

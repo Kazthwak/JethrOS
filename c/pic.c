@@ -1,4 +1,7 @@
 //pic stuff
+void picinit(){
+PIC_init(0x40,0x48);
+}
 
 //resets the pic status so it can handle more interupts again
 void picintdone(unsigned char irq){
@@ -78,6 +81,3 @@ byteout(mpiccommand, 0x20);
 
 //setting up idt now. def didnt copy paste the code I am offended you would even think that
 
-void enint(){
-__asm__("sti");
-}

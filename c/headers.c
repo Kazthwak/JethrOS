@@ -11,7 +11,7 @@
 //for ifdefs for debug checking
 #define debug
 
-//includes
+//includesh
 #include <stdint.h>
 // #include <string.h>
 
@@ -168,7 +168,8 @@
 
 // #define crash
 
-//defing the function
+//defing the functions
+void picinit();
 void enint();
 void EOI(int pic);
 void IRQ_clear_mask(unsigned char IRQline);

@@ -44,9 +44,9 @@ i++;
 void init(){
 clear();
 setoffset(0,-1);
+picinit();
 amain();
 clear();
-teleprint2(0,0x4552524f, 0x52000000);
 #ifdef debug
 hang();
 #endif
