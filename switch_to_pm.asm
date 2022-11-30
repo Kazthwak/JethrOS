@@ -1,7 +1,23 @@
 [bits 16]
+
+db 0x41
+idtdef: db 0x08
+db 00
+dw 00000000
+
 ; Switch to protected mode
 switch_to_pm:
+
+
+
+	push ax
+	mov ax, 0x2401
+	int 0x15
+	pop ax
 	cli
+pusha
+lidt [idtdef]
+popa
 	lgdt [gdt_descriptor]
 
 	mov eax, cr0

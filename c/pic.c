@@ -75,4 +75,9 @@ byteout(mpiccommand, 0x20);
 }
 }
 
+
 //setting up idt now. def didnt copy paste the code I am offended you would even think that
+
+void enint(){
+__asm__("sti");
+}

@@ -13,6 +13,7 @@
 
 //includes
 #include <stdint.h>
+// #include <string.h>
 
 
 //pic controll stuff
@@ -35,8 +36,6 @@
 #define ICW4_BUF_MASTER	0x0C		/* Buffered mode/master */
 #define ICW4_SFNM	0x10		/* Special fully nested (not) */
 
-//including font data
-#include <b8x8font.h>
 
 //defining the font
 #define ah 0x3F333300
@@ -170,6 +169,12 @@
 // #define crash
 
 //defing the function
+void enint();
+void EOI(int pic);
+void IRQ_clear_mask(unsigned char IRQline);
+void IRQ_set_mask(unsigned char IRQline);
+void PIC_init(int offset1, int offset2);
+void picintdone(unsigned char irq);
 int getcode(int charin, int mode);
 void crash();
 void setpixel(int x, int y, char colour);
