@@ -11,6 +11,10 @@
 //for ifdefs for debug checking
 #define debug
 
+//includes
+#include <stdint.h>
+
+
 //pic controll stuff
 #define mpiccommand 0x0020
 #define mpicdata 0x0021
