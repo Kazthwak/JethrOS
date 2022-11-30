@@ -77,6 +77,9 @@ if(charin == 0x37){return(h7);}
 if(charin == 0x38){return(h8);}
 if(charin == 0x39){return(h9);}
 if(charin == 0x2d){return(hhy);}
+if(charin == 0x5c){return(hbs);}
+if(charin == 0x3d){return(hes);}
+if(charin == 0x3b){return(hsc);}
 //return upper half
 //ah
 }else{
@@ -118,6 +121,9 @@ if(charin == 0x37){return(l7);}
 if(charin == 0x38){return(l8);}
 if(charin == 0x39){return(l9);}
 if(charin == 0x2d){return(lhy);}
+if(charin == 0x5c){return(lbs);}
+if(charin == 0x3d){return(hes);}
+if(charin == 0x3b){return(lsc);}
 }
 return(0);
 }

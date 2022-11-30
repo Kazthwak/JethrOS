@@ -1,8 +1,8 @@
 //defing some video stuff
 #define VIDEO_ADDRESS 0xb8000
 //these are for text
-#define MAX_ROWS 24
-#define MAX_COLS 39
+#define MAX_ROWS 25
+#define MAX_COLS 40
 // Attribute byte for our default colour scheme .
 #define WHITE_ON_BLACK 0x0f
 // Screen device I / O ports
@@ -129,9 +129,19 @@
 #define hhy 0x00000000
 #define lhy 0x0000003F
 
+#define hbs 0x30604000
+#define lbs 0x03060C18
+
+#define hes 0x003F0000
+#define les 0x00003F00 
+
+#define hsc 0x000C0C06
+#define lsc 0x000C0C00
 
 #define IDTBASE 0x00000000
 #define IDTSIZE 0xFF
+
+
 
 // #define crash
 
