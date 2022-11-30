@@ -57,9 +57,11 @@ int* colloc = (int*)0x7c10;
 
 //increments the row so it goes to the next character
 void inccol(){
-setoffset(getrow(),getcol()+1);
+int cool = getcol();
+int roow = getrow();
+setoffset(roow,cool+1);
 if(getcol() >= MAX_COLS){
-setoffset(getrow()+1,-1);
+setoffset(roow+1,0);
 }
 corcol();
 }

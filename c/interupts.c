@@ -39,6 +39,7 @@ charin -= 0x20;
 //return lower half
 //al
 if(mode == 1){
+if(charin == 0x3e){return(gth);}
 if(charin == 0x41){return(ah);}
 if(charin == 0x42){return(bh);}
 if(charin == 0x43){return(ch);}
@@ -70,6 +71,7 @@ if(charin == 0x5a){return(zh);}
 //return upper half
 //ah
 }else{
+if(charin == 0x3e){return(gtl);}
 if(charin == 0x41){return(al);}
 if(charin == 0x42){return(bl);}
 if(charin == 0x43){return(cl);}

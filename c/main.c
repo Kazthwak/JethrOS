@@ -5,13 +5,9 @@ init();
 
 //amain stands for actual main, and is where the kernel should be put
 void amain(){
-for(int i = 0; i < 25; i++){
-setoffset(i,i);
-print_char(0x41+i,-1);
+for(int i = 0; i < 255; i++){
+telechar(-1,i);
 }
-setoffset(24,25);
-print_char(0x41+25, -1);
-// telechar(-1,0x41);
 hang();
 }
 
