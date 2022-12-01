@@ -161,6 +161,10 @@
 #define hsc 0x000C0C06
 #define lsc 0x000C0C00
 
+#define tildeh 0x00000000
+#define tildel 0x6E3B0000
+
+
 #define IDTBASE 0x00000000
 #define IDTSIZE 0xFF
 

@@ -29,7 +29,7 @@ setpixel(x+j,y+3-i, 0x0);
 
 }
 
-//returns the font data
+//returns the font data. mode defines whether it returns the high or low half of the font
 int getcode(int charin, int mode){
 //turn uppercase if lowercase
 if(charin > 0x60 && charin <= 0x7a){
@@ -80,6 +80,7 @@ if(charin == 0x2d){return(hhy);}
 if(charin == 0x5c){return(hbs);}
 if(charin == 0x3d){return(hes);}
 if(charin == 0x3b){return(hsc);}
+if(charin == 0x7e){return(tildeh);}
 //return upper half
 //ah
 }else{
@@ -124,6 +125,7 @@ if(charin == 0x2d){return(lhy);}
 if(charin == 0x5c){return(lbs);}
 if(charin == 0x3d){return(hes);}
 if(charin == 0x3b){return(lsc);}
+if(charin == 0x7e){return(tildel);}
 }
 return(0);
 }
