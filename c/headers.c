@@ -166,8 +166,11 @@
 
 
 #define IDTBASE 0x00000000
-#define IDTSIZE 0xFF
+#define IDTSIZE 2048
+#define IDT_MAX_DESCRIPTORS 64
 
+#define true 1
+#define false 0
 
 
 // #define crash
