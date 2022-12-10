@@ -40,10 +40,42 @@ i++;
 }
 }
 
+//dumps some bytes after start
+void memdump(int* start){
+int8_t* g = 0x0;
+*g = 255;
+start = 0;
+clear();
+int8_t* tmp;
+for(int i = 0;i < 25; i++){
+for(int j = 0;j < 13; j++){
+int8_t l = 0xff;
+setoffset(i,j*3-1);
+hexint(l);
+}
+}
+}
+
+void hexdig(int num){
+int tmp;
+tmp = num + 0x30;
+if(num > 9){tmp += 0x07;}
+telechar(-1,tmp);
+}
+
+void hexint(int num){
+int tmp = (num >> 4) & 0x0f;
+hexdig(tmp);
+tmp = num & 0x0f;
+hexdig(tmp);
+}
+
 //the funtion that initializes amain, if amain returns it prints an error message
 void init(){
 clear();
 setoffset(0,-1);
+teleprint(0,0,-1,0x494e4954);
+teleprint(0,0,-1, 0x494e4720);
 picinit();
 amain();
 clear();
@@ -106,7 +138,7 @@ teleprint(0,0,colour,a);
 //YOU CAN USE ANY OF THESE
 //does newline
 void newline(){
-setoffset(getrow()+1,-2);
+setoffset(getrow()+1,-1);
 }
 
 // checks if the column is less than -a, setting it to -1 if it is
@@ -119,22 +151,19 @@ setoffset(getrow(),-1);
 //prints an integer up to 999
 //if the number is bigger, it does strange things
 void printint(int num){
-if(num > 99){
 int tmp;
-tmp = floordiv(num, 100);
-telechar(0,tmp+0x30);
-num = remainder(num,100);
-if(num < 10){telechar(0,0x30);}
-}
-if(num > 9){
-int tmp;
-tmp = floordiv(num, 10);
-telechar(0,tmp+0x30);
-}
-while(num > 9){
-num -= 10;
-}
-telechar(0,num +0x30);
+//100s
+tmp = floordiv(num,100);
+tmp += 0x30;
+telechar(-1,tmp);
+//10s
+tmp = floordiv(remainder(num,100),10);
+tmp += 0x30;
+telechar(-1,tmp);
+//1s
+tmp = remainder(num,10);
+tmp += 0x30;
+telechar(-1,tmp);
 }
 
 //return the larger of the two number, currently unused

@@ -169,6 +169,11 @@
 #define IDTSIZE 2048
 #define IDT_MAX_DESCRIPTORS 64
 
+#define idtstart 0x0
+
+#define picw 0
+
+
 #define true 1
 #define false 0
 
@@ -176,6 +181,13 @@
 // #define crash
 
 //defing the functions
+void hexdig(int num);
+void hexint(int num);
+void memdump(int* start);
+void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags);
+void idt_init(void);
+void exception_handler(void);
+void Qshutdown();
 void picinit();
 void enint();
 void EOI(int pic);

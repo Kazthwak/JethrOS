@@ -1,3 +1,4 @@
+jmp idtdone
 jmp initidt
 %include "idt.asm"
 
