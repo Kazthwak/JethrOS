@@ -1,8 +1,15 @@
 //pic stuff
 void picinit(){
 PIC_init(0x40,0x48);
-idt_init();
+// idt_init();
 }
+
+// void idtclear(){
+// for(int i = 0; i < 1024; i++){
+// long tmp = i+0x100;
+// *(int8_t*)tmp = 0x00;
+// }
+// }
 
 //resets the pic status so it can handle more interupts again
 void picintdone(unsigned char irq){
@@ -83,6 +90,14 @@ byteout(mpiccommand, 0x20);
 
 //setting up idt now. def didnt copy paste the code I am offended you would even think that
 // 32bit IDT entry
+
+__attribute__((noreturn))
+void exception_handler() {
+    __asm__ volatile ("cli; hlt"); // Completely hangs the computer
+}
+
+/*
+
 typedef struct {
 	uint16_t    isr_low;      // The lower 16 bits of the ISR's address
 	uint16_t    kernel_cs;    // The GDT segment selector that the CPU will load into CS before calling the ISR
@@ -113,7 +128,7 @@ void exception_handler() {
 
 //sets the idt entry "vector" to a giver isr with the given flags
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags) {
-int* idtptr = idtstart;
+int* idtptr = 0;
 //defines an idt entry wat the appropriate idt location
     idt_entry_t* descriptor = idtptr[vector];
 
@@ -147,3 +162,4 @@ teleprint(0,0,-1,0x49445420);
     // __asm__ volatile ("sti"); // set the interrupt flag
 }
 
+*/

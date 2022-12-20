@@ -11,7 +11,7 @@ init();
 
 //amain stands for actual main, and is where the kernel should be put
 void amain(){
-memdump(0x0);
+memdump(0x200);
 hang();
 // hang();
 // teleprint3(-1, 0x54484953, 0x49533132, 0x43484152);
@@ -19,8 +19,8 @@ hang();
 for(int i = 0x2d; i < 255; i++){
 telechar(-1,i);
 wait(1);
-if(i == 0x61){
-int j = 1/0;
+if(i == 0x60){
+hang();
 }
 }
 hang();

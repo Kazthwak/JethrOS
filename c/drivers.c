@@ -2,12 +2,10 @@ void Qshutdown(){
 wordout(0x604, 0x2000);
 }
 
-extern getval;
-
-int8_t getaddr(int* addr){
-int8_t* point = 0x0;
-return(point[(int)addr]);
-}
+// int8_t getaddr(int* addr){
+// int8_t* point = (int8_t*)0x0;
+// return(point[(int)addr]);
+// }
 
 //supposed to handle scrolling but not implemented yet
 void scroll(){

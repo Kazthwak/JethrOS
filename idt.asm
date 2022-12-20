@@ -58,5 +58,15 @@ isr_stub_table:
 %endrep
 
 
+;am going to convert the copy paosted c code to assembly and make the idt manually
+;I kind of prefer assembly because  there is no compiler to cause strange behaviour like the strange pointer stuff that is happening
+
+
+
+
+
+
+
+
 initidt:
 jmp idtdone

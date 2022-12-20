@@ -1,5 +1,5 @@
 //defing some video stuff
-#define VIDEO_ADDRESS 0xb8000
+#define VIDEO_ADDRESS (char*)0xb8000
 //these are for text
 #define MAX_ROWS 25
 #define MAX_COLS 40
@@ -181,9 +181,10 @@
 // #define crash
 
 //defing the functions
+void idtclear();
 void hexdig(int num);
 void hexint(int num);
-void memdump(int* start);
+void memdump(int start);
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags);
 void idt_init(void);
 void exception_handler(void);

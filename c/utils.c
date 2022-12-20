@@ -41,17 +41,13 @@ i++;
 }
 
 //dumps some bytes after start
-void memdump(int* start){
-int8_t* g = 0x0;
-*g = 255;
-start = 0;
+void memdump(int start){
 clear();
-int8_t* tmp;
-for(int i = 0;i < 25; i++){
-for(int j = 0;j < 13; j++){
-int8_t l = 0xff;
+for(int i = 0; i < 25; i++){
+for(int j = 0; j < 13; j++){
+long tmp = start+((i * 13) + j)+1;
 setoffset(i,j*3-1);
-hexint(l);
+hexint(*(int8_t*)tmp);
 }
 }
 }
