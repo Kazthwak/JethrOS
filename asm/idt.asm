@@ -69,4 +69,7 @@ isr_stub_table:
 
 
 initidt:
+;set up idt
+mov [0x100], byte 0x00
+mov [0x101], byte 0x40
 jmp idtdone

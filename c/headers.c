@@ -15,6 +15,7 @@
 #include <stdint.h>
 // #include <string.h>
 
+//testing
 
 //pic controll stuff
 #define mpiccommand 0x0020

@@ -1,29 +1,34 @@
 //main is what is called, but all it does is call init() which calls amain
 void main(){
+// while(1);
+// Qshutdown();
 setoffset(0,-1);
 teleprint1(-1,0x4c4f4144);
 teleprint1(-1,0x4544204b);
 teleprint1(-1,0x45524e45);
 teleprint1(-1,0x4c202020);
+// while(1);
 init();
 }
 
 
 //amain stands for actual main, and is where the kernel should be put
 void amain(){
-memdump(0x200);
-hang();
+// memdump(0x200);
+// memdump(0x100);
+// hang();
 // hang();
 // teleprint3(-1, 0x54484953, 0x49533132, 0x43484152);
 // hang();
-for(int i = 0x2d; i < 255; i++){
+while(1){
+for(int i = 0x2d; i < 0x80; i++){
 telechar(-1,i);
-wait(1);
-if(i == 0x60){
-hang();
+waitforkey(1);
+// setoffset(1,1);
+// hexint(i);
+// setoffset(5,5);
 }
 }
-hang();
 }
 
 

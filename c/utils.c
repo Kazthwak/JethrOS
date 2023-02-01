@@ -1,6 +1,6 @@
 //hangs forever
 void hang(){
-while(1==1);
+asm("cli; hlt");
 }
 
 //crashes (at least until i set up an interupt to catch divide by 0 errors)

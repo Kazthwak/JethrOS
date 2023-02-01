@@ -9,7 +9,6 @@ dw 00000000
 switch_to_pm:
 
 
-
 	push ax
 	mov ax, 0x2401
 	int 0x15
