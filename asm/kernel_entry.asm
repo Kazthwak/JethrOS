@@ -1,4 +1,5 @@
 [bits 32]
+SECTION .ke
 ; mov dx, 0x604
 ; mov ax, 0x2000
 ; out dx, ax

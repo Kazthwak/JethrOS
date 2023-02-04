@@ -4,7 +4,7 @@
 ;kernel should be loaded at 0x3800
 KERNEL_OFFSET equ 0x7e00
 ;but jump to 0x4800
-KERNEL_OFFSETj equ 0x8e00
+KERNEL_OFFSETj equ 0x8400
 
 ;store the boot drive
 	mov [BOOT_DRIVE], dl
@@ -58,9 +58,9 @@ load_kernel:
 ;tell the code where to load the code
     mov bx, KERNEL_OFFSET
 ;how many sectors to load
-	mov dh, 0x23
+	mov dh, 0x1e
 	;sector to start on
-	mov ah, 0x06
+	mov ah, 0x10
 	; mov dh, 0x5
 	;set dl to contain the drive booted from
 	mov dl, [BOOT_DRIVE]
@@ -73,7 +73,7 @@ dlr:
 	pusha
 	;load the idt from drive
 	mov ah, 2
-	mov al, 2
+	mov al, 6
 	mov ch, 0
 	mov dh, 0
 	mov dl, [BOOT_DRIVE]
@@ -108,13 +108,14 @@ BEGIN_PM:
 	; int 0x0
 	; jmp $
 	; jmp closeqt
-	; jmp $
+	jmp $
 	;jump to the kernel entry
 	call KERNEL_OFFSETj
 	;hang if return but should not happen and this probably wont be in ram if it does
 	jmp $
 
 ;debug function
+[bits 16]
 debug:
 ;add 0x30 to cl to turn num into char
 add cl, 0x30
