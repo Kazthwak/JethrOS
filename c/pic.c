@@ -92,8 +92,9 @@ byteout(mpiccommand, 0x20);
 // 32bit IDT entry
 
 __attribute__((noreturn))
-void exception_handler() {
+void exception_handler(){
     __asm__ volatile ("cli; hlt"); // Completely hangs the computer
+__builtin_unreachable();
 }
 
 /*
