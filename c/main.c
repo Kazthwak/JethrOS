@@ -1,3 +1,4 @@
+#include "c/headers.h"
 //main is what is called, but all it does is call init() which calls amain
 void main(){
 // while(1);

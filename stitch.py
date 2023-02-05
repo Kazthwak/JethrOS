@@ -24,7 +24,7 @@ try:
 except:
     pass
 
-whole.write(headers.read())
+#whole.write(headers.read())
 whole.write(meat.read())
 whole.write(drivers.read())
 whole.write(interupts.read())
@@ -32,7 +32,7 @@ whole.write(utils.read())
 whole.write(picstuff.read())
 whole.close()
 meat.close()
-headers.close()
+#headers.close()
 drivers.close()
 interupts.close()
 utils.close()

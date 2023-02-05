@@ -10,7 +10,7 @@ C_file:
 	@sudo python stitch.py
 	@gcc -ffreestanding -c toComp.c -o kernel.o 
 	@nasm asm/kernel_entry.asm -f elf64 -Wl,-z,max-page-size=0x10 -o kernel_entry.o
-	@ld -t link.ld -o kernel.bin kernel_entry.o kernel.o
+	@ld -T link.ld -o kernel.bin kernel_entry.o kernel.o
 os_image:
 	@cat boot_sect.bin kernel.bin > os-image 
 run:

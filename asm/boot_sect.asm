@@ -4,12 +4,12 @@
 ;kernel should be loaded at 0x3800
 KERNEL_OFFSET equ 0x7e00
 ;but jump to 0x4800
-KERNEL_OFFSETj equ 0x8400
+KERNEL_OFFSETj equ 0x9200
 
 ;store the boot drive
 	mov [BOOT_DRIVE], dl
 ;setup stack
-	mov bp, 0x8000
+	mov bp, 0xffff
 	mov sp, bp
 
 ;print that U have entered real mode
@@ -58,9 +58,9 @@ load_kernel:
 ;tell the code where to load the code
     mov bx, KERNEL_OFFSET
 ;how many sectors to load
-	mov dh, 0x1e
+	mov dh, 0x20
 	;sector to start on
-	mov ah, 0x10
+	mov ah, 0x8
 	; mov dh, 0x5
 	;set dl to contain the drive booted from
 	mov dl, [BOOT_DRIVE]
@@ -108,7 +108,7 @@ BEGIN_PM:
 	; int 0x0
 	; jmp $
 	; jmp closeqt
-	jmp $
+	; jmp $
 	;jump to the kernel entry
 	call KERNEL_OFFSETj
 	;hang if return but should not happen and this probably wont be in ram if it does
