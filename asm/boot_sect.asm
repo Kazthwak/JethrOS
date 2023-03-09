@@ -1,10 +1,10 @@
 ;tell nasm where thw code starts
 [org 0x7c00]
 
-;kernel should be loaded at 0x3800
+;kernel should be loaded at 0x7e00
 KERNEL_OFFSET equ 0x7e00
-;but jump to 0x4800
-KERNEL_OFFSETj equ 0x9200
+;but jump to 0x8800
+KERNEL_OFFSETj equ 0x8800
 
 ;store the boot drive
 	mov [BOOT_DRIVE], dl
@@ -58,9 +58,9 @@ load_kernel:
 ;tell the code where to load the code
     mov bx, KERNEL_OFFSET
 ;how many sectors to load
-	mov dh, 0x20
+	mov dh, 0x1b
 	;sector to start on
-	mov ah, 0x8
+	mov ah, 0x15
 	; mov dh, 0x5
 	;set dl to contain the drive booted from
 	mov dl, [BOOT_DRIVE]
@@ -73,12 +73,13 @@ dlr:
 	pusha
 	;load the idt from drive
 	mov ah, 2
-	mov al, 6
+	mov al, 9
 	mov ch, 0
 	mov dh, 0
 	mov dl, [BOOT_DRIVE]
 	;to here
-	mov bx, 0x500
+;loads it at 0x700. dont know why but...
+	mov bx, 0x100
 	mov cl, 2
 	int 0x13
 	popa

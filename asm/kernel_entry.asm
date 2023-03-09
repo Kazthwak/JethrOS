@@ -1,4 +1,7 @@
 [bits 32]
+SECTION .idt
+%include "asm/idtc.asm"
+
 SECTION .ke
 ; mov dx, 0x604
 ; mov ax, 0x2000
@@ -9,7 +12,7 @@ SECTION .ke
 ;jump after the message
 jmp pms
 ;message so I can find in ram
-dd "THIS IS THE BEGINING OF KERNEL ENTRY"
+dd "JethrOS"
 ;after the message
 pms:
 ; [org 0x1fff]
@@ -21,6 +24,7 @@ jmp idtdone
 ;jnmp to idt initialisation
 jmp initidt
 ;include the idt setup code
+; #an antiquity no longer used
 %include "asm/idt.asm"
 
 

@@ -1,5 +1,7 @@
+__attribute__((noreturn))
 void Qshutdown(){
 wordout(0x604, 0x2000);
+__builtin_unreachable();
 }
 
 // int8_t getaddr(int* addr){

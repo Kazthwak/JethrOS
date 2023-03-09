@@ -1,9 +1,13 @@
-#include "c/headers.h"
+#include "./c/headers.h"
 //main is what is called, but all it does is call init() which calls amain
 void main(){
 // while(1);
 // Qshutdown();
+char a[2] = "AB";
+char* ab = &a[0];
 setoffset(0,-1);
+hexint(*ab);
+hang();
 teleprint1(-1,0x4c4f4144);
 teleprint1(-1,0x4544204b);
 teleprint1(-1,0x45524e45);
@@ -11,7 +15,6 @@ teleprint1(-1,0x4c202020);
 // while(1);
 init();
 }
-
 
 //amain stands for actual main, and is where the kernel should be put
 void amain(){
