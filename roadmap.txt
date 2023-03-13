@@ -1,0 +1,17 @@
+--test on real machine
+basic interrupts working
+graphics interrupt
+keyboard interupt
+--test on real machine
+filesystem
+disk interupt (hdd)
+--test on real machine
+c standard library
+--test on real machine
+load one application from disk
+that application will intself a kernel operation to handle the loading of other applications
+although one could instead have something else (but it would be the only app capable of running)
+--test on real machine
+port python
+--test on real machine
+get internet working
