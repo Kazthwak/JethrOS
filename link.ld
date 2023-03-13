@@ -1,10 +1,8 @@
 MEMORY{
-    ram : ORIGIN = 0x7e00, LENGTH = 512K
-    idt : ORIGIN = 0x700, LENGTH = 3K
+    ram : ORIGIN = 0x9200, LENGTH = 512K
 }
 
 SECTIONS{
-.idt : { *(.idt) } > idt
 .ke : { *(.ke) } > ram
 .text : { *(.text) } > ram
 .data : { *(.data) } > ram

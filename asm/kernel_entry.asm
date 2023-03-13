@@ -1,6 +1,6 @@
 [bits 32]
-SECTION .idt
-%include "asm/idtc.asm"
+; SECTION .idt
+; %include "asm/idtc.asm"
 
 SECTION .ke
 ; mov dx, 0x604
@@ -20,15 +20,12 @@ pms:
 ; db 0x43
 ; jmp $
 ; dd "THIS IS THE START OF KERNEL ENTRY"
-jmp idtdone
 ;jnmp to idt initialisation
-jmp initidt
 ;include the idt setup code
 ; #an antiquity no longer used
-%include "asm/idt.asm"
+; %include "asm/idt.asm"
 
 
-idtdone:
 ;testintg
 ; Ensures that we jump straight into the kernel ’s entry function.
 [extern main] ; Declate that we will be referencing the external symbol ’ main ’,

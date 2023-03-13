@@ -2,10 +2,10 @@ all: nasm C_file os_image run
 
 nasm:
 	@nasm asm/boot_sect.asm
-	@nasm asm/idtc.asm
+	@# nasm asm/idtc.asm
 	@mv asm/boot_sect .
-	@mv asm/idtc .
-	@cat boot_sect idtc > boot_sect.bin
+	@# mv asm/idtc .
+	@cat boot_sect > boot_sect.bin
 C_file:
 	@sudo python stitch.py
 	@gcc -ffreestanding -c toComp.c -o kernel.o 
