@@ -4,9 +4,10 @@ is just file at specific location
 all addresses are sector num (indexed from 1) in 64 bit (unsigned) int (supports over a pettabyte of disk storage)
 
 sector 1 of file:
-Extra header sections used (single byte) 0-63 (first bit is wheather there is a next fragment)(second bit is wheather there is a prievious fragment)
+byte of 3 bools; whether there is a header above it and wheather there is one below. Then wheather there is a virtual header file (VHF)
 (only if not top header) address of top header
---only on top header--
+byte (fs version)
+--only on top header-- IF THERE IS NO VHF
 name\0
 Parent*s* (the address of their header)
 parent1\0
@@ -18,3 +19,4 @@ child2\0\0
 (only if there is a next header) address of next file fragment (64 bit unsigned int)
 length of file fragment (not including header) (32 bit unsigned int) (supports 4TB files)
 --padded to correct num of sectors
+if there is a VFH, it takes the form of a bin file, but it's contents replaces the rest of the header file of the og file. 
