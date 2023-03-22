@@ -1,5 +1,5 @@
 MEMORY{
-    ram : ORIGIN = 0x9200, LENGTH = 512K
+    ram : ORIGIN = 0x9000, LENGTH = 512K
 }
 
 SECTIONS{

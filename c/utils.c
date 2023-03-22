@@ -3,6 +3,20 @@ void hang(){
 asm("cli; hlt");
 }
 
+void praddr(long addr){
+hexint(((int)addr>>8)&0xff);
+hexint((int)addr&0xff);
+}
+
+void prstr(long strstart){
+char* point = (char*)strstart;
+while(*point != 0x00){
+telechar(-1, *point);
+point++;
+if(point > 0x9023){inccol();hexint(*point);hang();}
+}
+}
+
 //crashes (at least until i set up an interupt to catch divide by 0 errors)
 void crash(){int k = 0; int i = 1/k;}
 

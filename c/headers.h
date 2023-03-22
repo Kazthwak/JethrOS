@@ -182,6 +182,8 @@
 // #define crash
 
 //defing the functions
+void prstr(long strstart);
+void praddr(long addr);
 void idtclear();
 void hexdig(int num);
 void hexint(int num);

@@ -4,7 +4,7 @@
 ;kernel should be loaded at 0x7e00
 KERNEL_OFFSET equ 0x7e00
 ;but jump to 0x8800
-KERNEL_OFFSETj equ 0x8600
+KERNEL_OFFSETj equ 0x9000
 
 ;store the boot drive
 	mov [BOOT_DRIVE], dl
@@ -56,11 +56,11 @@ load_kernel:
 	mov bx, MSG_LOAD_KERNEL
 	; call print_string
 ;tell the code where to load the code
-    mov bx, KERNEL_OFFSET
+    mov bx, 0x7e00
 ;how many sectors to load
-	mov dh, 0x17
+	mov dh, 0x1c
 	;sector to start on
-	mov ah, 0x2
+	mov ah, 0x4
 	; mov dh, 0x5
 	;set dl to contain the drive booted from
 	mov dl, [BOOT_DRIVE]

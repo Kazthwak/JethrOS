@@ -2,12 +2,8 @@
 //main is what is called, but all it does is call init() which calls amain
 void main(){
 // while(1);
-char a[] = "ABC";
-char* ab = &a[0];
-setoffset(0,-1);
-hexint(*ab);
-tst(a);
-hang();
+// tst(a);
+// hang();
 teleprint1(-1,0x4c4f4144);
 teleprint1(-1,0x4544204b);
 teleprint1(-1,0x45524e45);
