@@ -1,7 +1,7 @@
 //pic stuff
 void picinit(){
 PIC_init(0x40,0x48);
-// idt_init();
+idt_init();
 }
 
 // void idtclear(){
@@ -87,6 +87,91 @@ byteout(mpiccommand, 0x20);
 }
 }
 
+#define idt_entries 32
+#define idt_entry_length 64
+
+//added 2 to make sure that the idtr start 0x500
+#define idtr_start 0x502
+#define idtr_length 0x6
+//make sure it is idtrlength + idtrstart
+#define idt_start 0x508
+//#define gdt_ent 0x10
+//#define gdt_ent 0x1
+#define gdt_ent 0x0
+// #define loc exception_handler
+#define flags 0x8E
+#define reserved 0x0
+
+void idt_init(void){
+//iterat through 32 idt entries
+
+int loc = exception_handler;
+// hexint(idt_start);
+// hang();
+//result
+//address_low 2		address of exception_handler. will be updated to table in future (exception handleres in assebly)
+//gdt offset 2		gdt_ent
+//reserve 1			0x0
+//attributes 1		0x8e
+//adress_high 2		see address_low
+//total  8			500+(8n)
+
+for(uint32_t i = 0; i < idt_entries; i++){
+	//j is starting
+	uint32_t j = (8*i)+idt_start;
+	// hexint((uint8_t)j);
+	// #offset for each idt part
+	uint32_t joffset = 0;
+	//lower half of address
+	uint16_t* isr_low = (uint16_t*)j;
+	*isr_low = (uint16_t)(loc & 0xffff);
+	joffset+= 2;
+	// #gdt offset
+	uint16_t* kernel_cs = reinterpret_cast<uint16_t*>(j+joffset);
+	*kernel_cs = (uint16_t)gdt_ent;
+	joffset+= 2;
+	//reserved
+	uint8_t* reserve = (uint8_t*)(j+joffset);
+	*reserve = reserved;
+	joffset+= 1;
+	//attributes
+	uint8_t* attributes = (uint8_t*)(j+joffset);
+	*attributes = flags;
+	joffset+= 1;
+	//high address
+	uint16_t* isr_high = (uint16_t*)(j+joffset);
+	*isr_high = (uint16_t)(loc >> 16);
+
+}
+
+//pic now in existance at 0x500.
+//it is there as i want it, but what i want may not be correct
+
+//idtr is 48 bits
+//thats 6 bytes
+//create an idtr at 0x500
+int idt_s = idt_start;
+int idtr_s = idtr_start;
+uint32_t* base = (uint32_t*)(idtr_s);
+uint16_t* limit = (uint16_t*)(idtr_s + 4);
+*base  = idt_s;
+*limit = idt_entries*idt_entry_length-1;
+// qhexint(*base);
+// inccol();
+// dhexint(*limit);
+// inccol();
+// qhexint(&*base);
+// hang();
+
+//DOES NOT WORK. FIX IT
+
+//load idtr in 
+//make sure pointer is up to date
+ __asm__ volatile ("lidt 0x500" : :);
+//  crash();
+hang();
+
+}
 
 //setting up idt now. def didnt copy paste the code I am offended you would even think that
 // 32bit IDT entry

@@ -11,9 +11,7 @@ teleprint1(-1,0x4c202020);
 // while(1);
 init();
 }
-int tst(char a[]){
-hexint(a[0]);
-}
+
 //amain stands for actual main, and is where the kernel should be put
 void amain(){
 // memdump(0x200);

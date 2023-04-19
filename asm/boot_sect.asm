@@ -1,6 +1,8 @@
 ;tell nasm where thw code starts
 [org 0x7c00]
 
+KERNEL_SECTS equ 0x1d
+
 ;kernel should be loaded at 0x7e00
 KERNEL_OFFSET equ 0x7e00
 ;but jump to 0x8800
@@ -58,7 +60,7 @@ load_kernel:
 ;tell the code where to load the code
     mov bx, 0x7e00
 ;how many sectors to load
-	mov dh, 0x1c
+	mov dh, KERNEL_SECTS
 	;sector to start on
 	mov ah, 0x4
 	; mov dh, 0x5

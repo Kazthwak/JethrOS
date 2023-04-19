@@ -8,12 +8,14 @@ hexint(((int)addr>>8)&0xff);
 hexint((int)addr&0xff);
 }
 
+//DONOTUSE
 void prstr(long strstart){
+hang();
 char* point = (char*)strstart;
 while(*point != 0x00){
 telechar(-1, *point);
 point++;
-if(point > 0x9023){inccol();hexint(*point);hang();}
+// if(point > 0x9023){inccol();hexint(*point);hang();}
 }
 }
 
@@ -73,12 +75,24 @@ if(num > 9){tmp += 0x07;}
 telechar(-1,tmp);
 }
 
-void hexint(int num){
+void hexint(uint8_t num){
 int tmp = (num >> 4) & 0x0f;
 hexdig(tmp);
 tmp = num & 0x0f;
 hexdig(tmp);
 }
+
+void dhexint(uint16_t num){
+hexint(num >> 8);
+hexint(num & 0xff);
+}
+
+
+void qhexint(uint32_t num){
+dhexint(num >> 16);
+dhexint(num & 0xffff);
+}
+
 
 //the funtion that initializes amain, if amain returns it prints an error message
 void init(){

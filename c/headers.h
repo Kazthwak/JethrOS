@@ -182,11 +182,13 @@
 // #define crash
 
 //defing the functions
+void qhexint(uint32_t num);
+void dhexint(uint16_t num);
 void prstr(long strstart);
 void praddr(long addr);
 void idtclear();
 void hexdig(int num);
-void hexint(int num);
+void hexint(uint8_t num);
 void memdump(int start);
 void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags);
 void idt_init(void);

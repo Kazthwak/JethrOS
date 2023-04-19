@@ -15,8 +15,9 @@ void scroll(){
 
 //sets the pixel at x, y to colour
 void setpixel(int x, int y, char colour){
+if(x > MAX_COLS*8 || y > MAX_ROWS*8){return;}
 int poff = (320*y)+x+2;
-if(poff > 32768 && 1 == 0){
+if(poff > 32768 /*&& 1 == 0*/){
 // poff -= 32766;
 char* grp = (char*)0xb0000;
 grp += poff;
