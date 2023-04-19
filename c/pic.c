@@ -127,7 +127,7 @@ for(uint32_t i = 0; i < idt_entries; i++){
 	*isr_low = (uint16_t)(loc & 0xffff);
 	joffset+= 2;
 	// #gdt offset
-	uint16_t* kernel_cs = reinterpret_cast<uint16_t*>(j+joffset);
+	uint16_t* kernel_cs = (uint16_t*)(j+joffset);
 	*kernel_cs = (uint16_t)gdt_ent;
 	joffset+= 2;
 	//reserved
