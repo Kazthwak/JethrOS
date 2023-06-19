@@ -8,6 +8,13 @@ KERNEL_OFFSET equ 0x7e00
 ;but jump to 0x8800
 KERNEL_OFFSETj equ 0x9000
 
+; mov ax, gdt_code
+; sub ax, gdt_start	
+; mov [0x500], ax
+
+; jmp $
+
+
 ;store the boot drive
 	mov [BOOT_DRIVE], dl
 ;setup stack

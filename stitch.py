@@ -1,3 +1,21 @@
+import os
+
+mode = "old"
+
+if(mode == "new"):
+	# print("asdasdasdasd"[-2:])
+	os.chdir("./c")
+	files = os.listdir(os.getcwd())
+	whole = open("../toComp.c", "w")
+	for i in files:
+		if(i[-2:] == ".c"):
+			tmp = open(i, "r")
+			whole.write(tmp.read())
+			tmp.close()
+	whole.close()
+	exit()
+    
+
 whole = open("toComp.c", "w")
 try:
     headers = open("c/headers.c","r")
