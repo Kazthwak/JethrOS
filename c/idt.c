@@ -4,11 +4,11 @@ extern void idt_load();
 
 /* Defines an IDT entry */
 struct idt_entry{
-    unsigned short base_lo;
-    unsigned short sel;        /* Our kernel segment goes here! */
-    unsigned char always0;     /* This will ALWAYS be set to 0! */
-    unsigned char flags;       /* Set using the above table! */
-    unsigned short base_hi;
+    uint16_t base_lo;
+    uint16_t sel;        /* Our kernel segment goes here! */
+    uint8_t always0;     /* This will ALWAYS be set to 0! */
+    uint8_t flags;       /* Set using the above table! */
+    uint16_t base_hi;
 } __attribute__((packed));
 
 struct idt_ptr
@@ -24,17 +24,35 @@ struct idt_ptr idtp;
 *  than twiddling with the GDT ;) */
 void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags)
 {
-    /* We'll leave you to try and code this function: take the
-    *  argument 'base' and split it up into a high and low 16-bits,
-    *  storing them in idt[num].base_hi and base_lo. The rest of the
-    *  fields that you must set in idt[num] are fairly self-
-    *  explanatory when it comes to setup */
-	idt[num].base_lo = (short)base&0xffff;
-	idt[num].sel = sel;
-	idt[num].always0 = 0;
-	idt[num].flags = flags;
-	idt[num].base_hi = (short)(base>>16)*0xffff
+	uint32_t idt_entry_base = &idt + (num * 8);
+    /* The interrupt routine's base address */
+    // idt[num].base_lo = (base & 0xFFFF);
+	qhexint(&idt_entry_base);
+	hang();
+	
+	uint16_t* base_lo = (uint16_t)idt_entry_base;
+	*base_lo = base & 0xffff;
+    // idt[num].base_hi = (base >> 16) & 0xFFFF;
+	
+	uint16_t* sele = (uint16_t)idt_entry_base+2;
+	*sele = sel;
 
+	uint8_t* zero = (uint8_t)idt_entry_base+4;
+	*zero = 0x00;
+
+	uint8_t* options = (uint8_t)idt_entry_base+5;
+	*options = flags;
+
+	uint16_t* base_hi = (uint16_t)idt_entry_base+6;
+	*base_hi = (base >> 16) & 0xffff;
+
+
+
+    /* The segment or 'selector' that this IDT entry will use
+    *  is set here, along with any access flags */
+    // idt[num].sel = sel;
+    // idt[num].always0 = 0;
+    // idt[num].flags = flags;
 }
 
 //copy pasted
@@ -57,6 +75,7 @@ void idt_install()
 
 void idt_init2(){
 idt_install();
+idt_set_gate(0, 0xffffffff, 0xffff, 0xff);
 qhexint(&idt);
 waitforkey();
 memdump(&idt);
