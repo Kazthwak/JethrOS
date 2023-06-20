@@ -2,6 +2,8 @@ flag = nodebug
 
 all: run
 
+.PHONY: makecomp
+
 run: os-image
 	@qemu-system-x86_64 -drive format=raw,file=os-image 
 
