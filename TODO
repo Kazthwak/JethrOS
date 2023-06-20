@@ -1,7 +1,0 @@
-//DONE// switch to grpahics mode
-implement keyboard interupts
-implement keyboard get interupts
-implement graphics interupts
-implement DISK interupts (floppyp or hdd, whichever is easier) COULD USE EMULATED 8086 MODE
-implement command line
-implement other programs

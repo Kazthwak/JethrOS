@@ -3,7 +3,7 @@ flag = nodebug
 all: run
 
 clean:
-	rm toComp.c kernel.o kernel_entry.o kernel.bin
+	rm toComp.c kernel.o kernel_entry.o kernel.bin boot_sect.bin
 
 .PHONY: makecomp
 
