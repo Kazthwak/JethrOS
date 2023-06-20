@@ -2,6 +2,9 @@ flag = nodebug
 
 all: run
 
+clean:
+	rm toComp.c kernel.o kernel_entry.o kernel.bin
+
 .PHONY: makecomp
 
 run: os-image
