@@ -13,6 +13,17 @@ SECTION .ke
 jmp pms
 ;message so I can find in ram
 dd "JethrOS"
+
+;copy-pasted idt code ------------------------------------------
+; Loads the IDT defined in '_idtp' into the processor.
+extern idtp
+global idt_load
+idt_load:
+    lidt [idtp]
+	ret
+	; jmp $	
+		
+
 ;after the message
 pms:
 ; [org 0x1fff]

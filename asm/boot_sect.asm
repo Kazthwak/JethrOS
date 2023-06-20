@@ -109,7 +109,6 @@ popa
 	jmp kl
 
 [bits 32]
-
 ;print that U R in protected mode
 BEGIN_PM:
 	mov ebx, MSG_PROT_MODE

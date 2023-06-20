@@ -1,7 +1,7 @@
 //pic stuff
 void picinit(){
 PIC_init(0x40,0x48);
-idt_init();
+idt_init2();
 }
 
 // void idtclear(){
@@ -94,13 +94,18 @@ byteout(mpiccommand, 0x20);
 #define idtr_start 0x502
 #define idtr_length 0x6
 //make sure it is idtrlength + idtrstart
-#define idt_start 0x508
+#define idt_start 0x510
 //#define gdt_ent 0x10
 //#define gdt_ent 0x1
 #define gdt_ent 0x08
 // #define loc exception_handler
-#define flags 0x8f 
+#define ops 0x8f 
 #define reserved 0x0
+
+typedef struct {
+	uint16_t	limit;
+	uint32_t	base;
+} __attribute__((packed)) idtr_t;
 
 void idt_init(void){
 //iterat through 32 idt entries
@@ -140,7 +145,7 @@ for(uint32_t i = 0; i < idt_entries; i++){
 	
 	//attributes
 	uint8_t* attributes = (uint8_t*)(j+joffset);
-	*attributes = flags;
+	*attributes = ops;
 	joffset+= 1;
 	
 	//high address
@@ -155,12 +160,11 @@ for(uint32_t i = 0; i < idt_entries; i++){
 //idtr is 48 bits
 //thats 6 bytes
 //create an idtr at 0x500
+idtr_t* steven = (idtr_t*)0x500;
 int idt_s = idt_start-1;
-int idtr_s = idtr_start;
-uint32_t* base = (uint32_t*)(idtr_s + 2);
-uint16_t* limit = (uint16_t*)(idtr_s);
-*base  = idt_s;
-*limit = idt_entries*idt_entry_length-1;
+steven->base = idt_s;
+steven->limit = idt_entries * idt_entry_length-1;
+// int idtr_s = idtr_start;
 // qhexint(*base);
 // inccol();
 // dhexint(*limit);
@@ -172,9 +176,9 @@ uint16_t* limit = (uint16_t*)(idtr_s);
 
 //load idtr in 
 //make sure pointer is up to date
- __asm__ volatile ("lidt 0x500" : :);
+ __asm__ volatile ("lidt [0x501]" : :);
 //  crash();
-// int a = 1/0;
+int a = 1/0;
 hang();
 
 }
@@ -218,8 +222,8 @@ void exception_handler() {
     __asm__ volatile ("cli; hlt"); // Completely hangs the computer
 }
 
-//sets the idt entry "vector" to a giver isr with the given flags
-void idt_set_descriptor(uint8_t vector, void* isr, uint8_t flags) {
+//sets the idt entry "vector" to a giver isr with the given ops
+void idt_set_descriptor(uint8_t vector, void* isr, uint8_t ops) {
 int* idtptr = 0;
 //defines an idt entry wat the appropriate idt location
     idt_entry_t* descriptor = idtptr[vector];
@@ -228,8 +232,8 @@ int* idtptr = 0;
     descriptor->isr_low        = (uint16_t)((uint32_t)isr) & 0xFFFF;
 //sets the kernel offset
     descriptor->kernel_cs      = 0x0; // this value can be whatever offset your kernel code selector is in your GDT
-//sets the flags
-    descriptor->attributes     = flags;
+//sets the ops
+    descriptor->attributes     = ops;
 //
     descriptor->isr_high       = (uint16_t)((uint32_t)isr) >> 16;
 //

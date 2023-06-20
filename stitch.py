@@ -1,6 +1,6 @@
 import os
 
-mode = "old"
+mode = "new"
 
 if(mode == "new"):
 	# print("asdasdasdasd"[-2:])

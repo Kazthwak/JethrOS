@@ -182,6 +182,8 @@
 // #define crash
 
 //defing the functions
+void memset(uint32_t base, uint8_t val, uint32_t length);
+void idt_init2();
 void qhexint(uint32_t num);
 void dhexint(uint16_t num);
 void prstr(long strstart);

@@ -8,6 +8,14 @@ hexint(((int)addr>>8)&0xff);
 hexint((int)addr&0xff);
 }
 
+void memset(uint32_t base, uint8_t val, uint32_t length){
+for(int i = 3; i < length; i++){
+char* j = (uint8_t*)i+base+1;
+*j = val;
+}
+}
+
+
 //DONOTUSE
 void prstr(long strstart){
 hang();
