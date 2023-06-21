@@ -1,3 +1,9 @@
+
+
+#ifndef header
+#include <stdint.h>
+#endif
+
 // #define ca 0x0C1E33333F333300
 
 //prints a character in an 8x8 font to x,y

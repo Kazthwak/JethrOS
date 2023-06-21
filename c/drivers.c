@@ -1,3 +1,9 @@
+
+
+#ifndef header
+#include <stdint.h>
+#endif
+
 __attribute__((noreturn))
 void Qshutdown(){
 wordout(0x604, 0x2000);
@@ -124,7 +130,7 @@ tmp = bytein(0x60);
 return(scancode(bytein(0x60)));
 }
 
-#define notdone
+// #define notdone
 
 //returns the char code of the scancode given
 int scancode(int scancodein){
@@ -132,9 +138,10 @@ int scancode(int scancodein){
 return(0x41);
 #endif
 switch(scancodein){
-case 0:
-return(1);
+case 0x01:
+return(0x31);
 }
+return(0x41);
 }
 
 //takes a byte from port

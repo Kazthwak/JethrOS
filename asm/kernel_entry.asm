@@ -10,19 +10,27 @@ SECTION .ke
 ;hang to test
 ; jmp $
 ;jump after the message
+extern exception_handler
+
+mov [0x500], dword exception_handler
+; jmp $
 jmp pms
 ;message so I can find in ram
 dd "JethrOS"
 
 ;copy-pasted idt code ------------------------------------------
 ; Loads the IDT defined in '_idtp' into the processor.
-extern idtp
 global idt_load
 idt_load:
-    lidt [idtp]
+    lidt [0x7000]
 	ret
 	; jmp $	
-		
+
+extern Qshutdown
+global idt_test
+idt_test:
+	int 0x0
+	call Qshutdown
 
 ;after the message
 pms:

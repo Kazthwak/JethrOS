@@ -177,11 +177,13 @@
 
 #define true 1
 #define false 0
-
+#define header
 
 // #define crash
 
 //defing the functions
+void arbitraryfunc(uint32_t funcaddr);
+
 void memset(uint32_t base, uint8_t val, uint32_t length);
 void idt_init2();
 void qhexint(uint32_t num);

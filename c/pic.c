@@ -1,3 +1,9 @@
+
+
+#ifndef header
+#include <stdint.h>
+#endif
+
 //pic stuff
 void picinit(){
 PIC_init(0x40,0x48);
@@ -186,11 +192,23 @@ hang();
 //setting up idt now. def didnt copy paste the code I am offended you would even think that
 // 32bit IDT entry
 
+// __attribute__((noreturn))
+// void exception_handler(){
+//     __asm__ volatile ("cli; hlt"); // Completely hangs the computer
+// __builtin_unreachable();
+// }
+
+
 __attribute__((noreturn))
 void exception_handler(){
+	telechar(-1, 0x41);
     __asm__ volatile ("cli; hlt"); // Completely hangs the computer
 __builtin_unreachable();
 }
+
+
+
+
 
 /*
 

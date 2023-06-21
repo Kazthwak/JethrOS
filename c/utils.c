@@ -1,3 +1,9 @@
+
+
+#ifndef header
+#include <stdint.h>
+#endif
+
 //hangs forever
 void hang(){
 asm("cli; hlt");
@@ -13,6 +19,10 @@ for(int i = 3; i < length; i++){
 char* j = (uint8_t*)i+base+1;
 *j = val;
 }
+}
+
+void arbitraryfunc(uint32_t funcaddr){
+((void(*)(void))funcaddr)();
 }
 
 
@@ -209,7 +219,7 @@ return(b);
 
 //waits for time
 void wait(int time){
-for(int i = 0; i < time*2000000; i++){}
+for(volatile int i = 0; i < time*2000000; i++){}
 }
 
 //gets a random number, can be quite slow
