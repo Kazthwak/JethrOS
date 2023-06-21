@@ -26,7 +26,9 @@ struct idt_ptr
 
 struct idt_entry idt[256];
 #define idt_start_mem 0x510
-#define idtp 0x7000
+//used to be called idtp. called vcstephven bc reasons
+//i was given tangfasctics to call it this
+#define vcstephven 0x7000
 
 /* Use this function to set an entry in the IDT. Alot simpler
 *  than twiddling with the GDT ;) */
@@ -68,12 +70,12 @@ void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, uns
 void idt_install()
 {
     /* Sets the special IDT pointer up, just like in 'gdt.c' */
-    // idtp->limit = (sizeof (struct idt_entry) * 256) - 1;
-    // idtp->base = idt_start_mem-1;
+    // vcstephven->limit = (sizeof (struct idt_entry) * 256) - 1;
+    // vcstephven->base = idt_start_mem-1;
 
-	uint16_t* limit = idtp;
+	uint16_t* limit = vcstephven;
 	*limit = (sizeof(struct idt_entry)*256)-1;
-	uint32_t* base = (uint32_t*)((uint32_t)idtp + 2);
+	uint32_t* base = (uint32_t*)((uint32_t)vcstephven + 2);
 	*base = idt_start_mem-2;
     
 	
@@ -106,7 +108,7 @@ arbitraryfunc(addr);
 newline();
 qhexint(idt_start_mem);
 newline();
-qhexint(idtp);	
+qhexint(vcstephven);	
 hang();
 }
 

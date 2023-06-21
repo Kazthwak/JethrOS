@@ -166,10 +166,10 @@ for(uint32_t i = 0; i < idt_entries; i++){
 //idtr is 48 bits
 //thats 6 bytes
 //create an idtr at 0x500
-idtr_t* steven = (idtr_t*)0x500;
+idtr_t* steven_old = (idtr_t*)0x500;
 int idt_s = idt_start-1;
-steven->base = idt_s;
-steven->limit = idt_entries * idt_entry_length-1;
+steven_old->base = idt_s;
+steven_old->limit = idt_entries * idt_entry_length-1;
 // int idtr_s = idtr_start;
 // qhexint(*base);
 // inccol();
